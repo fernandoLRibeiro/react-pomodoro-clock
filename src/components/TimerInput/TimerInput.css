@@ -1,0 +1,22 @@
+.timer-input {
+  display: flex;
+  border: 1px solid #003b00;
+  padding: 1em;
+
+  width: max-content;
+}
+
+.timer-input input {
+  border: 0;
+  outline: 0;
+  padding: 0 auto;
+  background-color: hsl(327, 73%, 10%);
+  font-family: monospace;
+  text-align: center;
+  color: #008f11;
+  width: 4em;
+}
+
+.timer-input input::placeholder {
+  color: #003b00;
+}

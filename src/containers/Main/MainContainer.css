@@ -1,0 +1,31 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4em;
+  gap: 3em;
+  border: 1px solid #003b00;
+  width: 40%;
+  margin: 6em 0;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(327, 73%, 3%);
+}
+
+.controllers-container {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.controller-icon {
+  cursor: pointer;
+}
+
+.controller-icon:hover {
+  color: #00ff41;
+  transition: all 0.075s ease;
+}
+
+h2 {
+  margin: 0;
+}

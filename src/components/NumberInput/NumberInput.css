@@ -1,0 +1,26 @@
+.number-input {
+  display: flex;
+  border: 1px solid #003b00;
+  width: max-content;
+  padding: 1em;
+  font-size: 1em;
+  align-items: center;
+  gap: 1em;
+}
+
+.number-container {
+  padding: 0 auto;
+  background-color: hsl(327, 73%, 10%);
+  width: 4em;
+  text-align: center;
+  font-weight: normal;
+}
+
+.arrow-button {
+  cursor: pointer;
+}
+
+.arrow-button:hover {
+  color: #00ff41;
+  transition: all 0.05s ease;
+}

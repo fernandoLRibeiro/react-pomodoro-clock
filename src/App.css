@@ -1,0 +1,14 @@
+.App {
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  font-family: monospace;
+  background-color: #0d0208;
+  color: #008f11;
+  height: max-content;
+}
+
+h1 {
+  margin: 2em 0;
+}
