@@ -4,7 +4,7 @@ import TimerInput from "../../components/TimerInput/TimerInput";
 import { StateContext } from "../../ContextProvider";
 import "./Settings.css";
 
-const Settings = () => {
+const Settings = ({setIsPlaying}) => {
   const [state, dispatch] = useContext(StateContext);
   const [taskTotal, setTaskTotal] = useState(state.taskTime);
   const [breakTotal, setBreakTotal] = useState(state.breakTime);
@@ -68,7 +68,10 @@ const Settings = () => {
         </div>
       </div>
       <div className="button-container">
-        <button className="set-button" onClick={handleSet}>
+        <button className="set-button" onClick={() => {
+          setIsPlaying(false);
+          handleSet();
+        }}>
           SET
         </button>
       </div>

@@ -19,7 +19,9 @@ const MainContainer = () => {
 
   return (
     <div className="main-container">
-      <h2 className="heading">{state.playTask ? "Task" : "Break"}</h2>
+      <h2 className="heading">{state.playTask ? "Task" : (state.cycleCount !== 0 &&
+        state.cyclesBeforeBigBreak !== 0 &&
+        state.cycleCount % state.cyclesBeforeBigBreak === 0) ? "Big Break" : "Break"}</h2>
       <div className="timer-container">
         <Timer
           isPlaying={isPlaying}
@@ -64,7 +66,7 @@ const MainContainer = () => {
           />
         </div>
       </div>
-      {openSettings ? <Settings /> : null}
+      {openSettings ? <Settings setIsPlaying={setIsPlaying} /> : null}
     </div>
   );
 };

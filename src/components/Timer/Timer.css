@@ -4,3 +4,9 @@
   font-size: 1.5em;
   background-color: hsl(327, 73%, 10%);
 }
+
+@media screen and (max-width: 480px) {
+  .timer {
+    font-size: 1.25em;
+  }
+}
