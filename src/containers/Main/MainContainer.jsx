@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Timer from "../../components/Timer/Timer";
 import {
   AiFillPlayCircle,
@@ -13,20 +13,54 @@ import { StateContext } from "../../ContextProvider";
 
 const MainContainer = () => {
   const [state, dispatch] = useContext(StateContext);
+  const [timerStart, setTimerStart] = useState(Date.now());
   const [isPlaying, setIsPlaying] = useState(false);
   const [openSettings, setOpenSettings] = useState(false);
   const [openRingtone, setOpenRingtone] = useState(false);
+  const [time, setTime] = useState(state.taskTime * 1000);
+  const [timerEnd, setTimerEnd] = useState(timerStart + time);
+  const [timeLeft, setTimeLeft] = useState(timerEnd - timerStart);
+
+  const handleTime = () => {
+    if (
+      state.playTask ||
+      (state.cycleCount !== 0 &&
+        state.cyclesBeforeBigBreak !== 0 &&
+        state.cycleCount % state.cyclesBeforeBigBreak === 0)
+    ) {
+      setTime(state.taskTime * 1000);
+      setTimeLeft(time);
+    } else {
+      setTime(state.breakTime * 1000);
+    }
+  };
+
+  useEffect(() => {
+    setTimeLeft(time);
+    setTimerStart(Date.now());
+  }, [time]);
 
   return (
     <div className="main-container">
-      <h2 className="heading">{state.playTask ? "Task" : (state.cycleCount !== 0 &&
-        state.cyclesBeforeBigBreak !== 0 &&
-        state.cycleCount % state.cyclesBeforeBigBreak === 0) ? "Big Break" : "Break"}</h2>
+      <h2 className="heading">
+        {state.playTask
+          ? "Task"
+          : state.cycleCount !== 0 &&
+            state.cyclesBeforeBigBreak !== 0 &&
+            state.cycleCount % state.cyclesBeforeBigBreak === 0
+          ? "Big Break"
+          : "Break"}
+      </h2>
       <div className="timer-container">
         <Timer
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
           setOpenRingtone={setOpenRingtone}
+          timerStart={timerStart}
+          timeLeft={timeLeft}
+          setTimeLeft={setTimeLeft}
+          timerEnd={timerEnd}
+          handleTime={handleTime}
         />
       </div>
       {state.showCycles ? (
@@ -53,7 +87,15 @@ const MainContainer = () => {
           {isPlaying ? (
             <AiFillPauseCircle size="3em" onClick={() => setIsPlaying(false)} />
           ) : (
-            <AiFillPlayCircle size="3em" onClick={() => setIsPlaying(true)} />
+            <AiFillPlayCircle
+              size="3em"
+              onClick={() => {
+                setIsPlaying(true);
+                setTimerStart(Date.now());
+                // setTimeLeft(time);
+                setTimerEnd(Date.now() + timeLeft);
+              }}
+            />
           )}
         </div>
 
@@ -66,7 +108,12 @@ const MainContainer = () => {
           />
         </div>
       </div>
-      {openSettings ? <Settings setIsPlaying={setIsPlaying} /> : null}
+      {openSettings ? (
+        <Settings
+          setIsPlaying={setIsPlaying}
+          setOpenSettings={setOpenSettings}
+        />
+      ) : null}
     </div>
   );
 };

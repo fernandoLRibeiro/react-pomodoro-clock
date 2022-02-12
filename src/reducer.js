@@ -10,7 +10,6 @@ export const initialState = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case "SET_SETTINGS":
-      console.log("called set settings");
       return {
         ...state,
         taskTime: action.item.taskTime,
@@ -21,8 +20,6 @@ export const reducer = (state, action) => {
       };
 
     case "END_TIMER":
-      console.log("called end timer");
-      console.log(`setting to ${!state.playTask}`);
       if (state.playTask) {
         return {
           ...state,
