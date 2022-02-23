@@ -5,6 +5,8 @@ export const initialState = {
   showCycles: false,
   cyclesBeforeBigBreak: 4,
   playTask: true,
+  showTimeSpent: false,
+  timeSpent: 0,
 };
 
 export const reducer = (state, action) => {
@@ -16,6 +18,7 @@ export const reducer = (state, action) => {
         breakTime: action.item.breakTime,
         cyclesBeforeBigBreak: action.item.cyclesBeforeBigBreak,
         showCycles: action.item.showCycles,
+        showTimeSpent: action.item.showTimeSpent,
         playTask: true,
       };
 
@@ -24,12 +27,14 @@ export const reducer = (state, action) => {
         return {
           ...state,
           playTask: false,
+          timeSpent: state.timeSpent + action.time,
         };
       } else {
         return {
           ...state,
           playTask: true,
           cycleCount: state.cycleCount + 1,
+          timeSpent: state.timeSpent + action.time,
         };
       }
 

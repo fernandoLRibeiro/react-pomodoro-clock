@@ -10,6 +10,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
   const [breakTotal, setBreakTotal] = useState(state.breakTime);
   const [counter, setCounter] = useState(state.cyclesBeforeBigBreak);
   const [showCycles, setShowCycles] = useState(state.showCycles);
+  const [showTimeSpent, setShowTimeSpent] = useState(state.showTimeSpent);
 
   const handleSet = () => {
     dispatch({
@@ -19,6 +20,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
         breakTime: breakTotal,
         cyclesBeforeBigBreak: counter,
         showCycles: showCycles,
+        showTimeSpent: showTimeSpent,
       },
     });
     setOpenSettings(false);
@@ -55,14 +57,28 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
               setCounter={setCounter}
             />
           </label>
-          <label className="cluster checkbox" htmlFor="checkboxId">
+          <label className="cluster checkbox" htmlFor="cycle-checkbox">
             <span className="label-text">Show Cycle Counter</span>
             <input
               type="checkbox"
               className="checkbox-input"
-              id="checkboxId"
+              id="cycle-checkbox"
               checked={showCycles}
               onChange={(e) => setShowCycles(e.target.checked)}
+            />
+            <div className="checkbox-box" />
+          </label>
+          <label className="cluster checkbox" htmlFor="time-spent-checkbox">
+            <span className="label-text">Show Time Spent</span>
+            <input
+              type="checkbox"
+              className="checkbox-input"
+              id="time-spent-checkbox"
+              checked={showTimeSpent}
+              onChange={(e) => {
+                console.log(e);
+                setShowTimeSpent(e.target.checked);
+              }}
             />
             <div className="checkbox-box" />
           </label>

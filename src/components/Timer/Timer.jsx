@@ -10,6 +10,7 @@ const Timer = ({
   timeLeft,
   setTimeLeft,
   timerEnd,
+  time,
 }) => {
   const [state, dispatch] = useContext(StateContext);
 
@@ -26,6 +27,7 @@ const Timer = ({
           setIsPlaying(false);
           dispatch({
             type: "END_TIMER",
+            time: time,
           });
           setOpenRingtone(true);
         }

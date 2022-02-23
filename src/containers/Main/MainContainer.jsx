@@ -40,6 +40,28 @@ const MainContainer = () => {
     setTimerStart(Date.now());
   }, [time]);
 
+  useEffect(() => {
+    if (isPlaying) {
+      if (state.playTask) {
+        document.title = "Task";
+      } else if (
+        state.cycleCount !== 0 &&
+        state.cyclesBeforeBigBreak !== 0 &&
+        state.cycleCount % state.cyclesBeforeBigBreak === 0
+      ) {
+        document.title = "Big Break";
+      } else {
+        document.title = "Break";
+      }
+    } else {
+      if (openRingtone) {
+        document.title = "HEY!";
+      } else {
+        document.title = "Pomodoro Clock";
+      }
+    }
+  }, [state.playTask, isPlaying, openRingtone]);
+
   return (
     <div className="main-container">
       <h2 className="heading">
@@ -61,13 +83,37 @@ const MainContainer = () => {
           setTimeLeft={setTimeLeft}
           timerEnd={timerEnd}
           handleTime={handleTime}
+          time={time}
         />
       </div>
-      {state.showCycles ? (
-        <div className="cycle-count-container">
-          <h3>{`Number of cycles: ${state.cycleCount}`}</h3>
-        </div>
-      ) : null}
+
+      <div className="optionals">
+        {state.showCycles && (
+          <div className="cycle-count-container">
+            <h3>{`Number of cycles: ${state.cycleCount}`}</h3>
+          </div>
+        )}
+
+        {state.showTimeSpent && (
+          <div className="time-spent-container">
+            <h3>Time spent: </h3>
+            <p>
+              &nbsp;
+              {`
+                  ${Math.floor(state.timeSpent / 1000 / 3600)
+                    .toString()
+                    .padStart(2, "0")}:${Math.floor(
+                ((state.timeSpent / 1000) % 3600) / 60
+              )
+                .toString()
+                .padStart(2, "0")}:${Math.floor((state.timeSpent / 1000) % 60)
+                .toString()
+                .padStart(2, "0")}
+                `}
+            </p>
+          </div>
+        )}
+      </div>
 
       {openRingtone ? (
         <div className="ringtone-container">
