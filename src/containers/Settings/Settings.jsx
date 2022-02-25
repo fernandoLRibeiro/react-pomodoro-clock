@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import NumberInput from "../../components/NumberInput/NumberInput";
 import TimerInput from "../../components/TimerInput/TimerInput";
 import { StateContext } from "../../ContextProvider";
@@ -20,8 +20,8 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
         breakTime: breakTotal,
         cyclesBeforeBigBreak: counter,
         showCycles: showCycles,
-        showTimeSpent: showTimeSpent,
-      },
+        showTimeSpent: showTimeSpent
+      }
     });
     setOpenSettings(false);
   };
@@ -76,7 +76,6 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
               id="time-spent-checkbox"
               checked={showTimeSpent}
               onChange={(e) => {
-                console.log(e);
                 setShowTimeSpent(e.target.checked);
               }}
             />
