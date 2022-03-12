@@ -45,7 +45,7 @@ h2 {
 
 @media screen and (max-width: 1024px) {
   .main-container {
-    width: 60%;
+    width: 60vw;
   }
 }
 
@@ -57,8 +57,8 @@ h2 {
 
 @media screen and (max-width: 480px) {
   .main-container {
-    width: 100%;
-    border-top: 1px solid #003b00;
-    border-bottom: 1px solid #003b00;
+    padding: 3em 0;
+    width: 90vw;
+    border: 1px solid #003b00;
   }
 }
