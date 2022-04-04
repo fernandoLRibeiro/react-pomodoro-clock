@@ -49,7 +49,7 @@ const MainContainer = () => {
         state.cyclesBeforeBigBreak !== 0 &&
         state.cycleCount % state.cyclesBeforeBigBreak === 0
       ) {
-        document.title = "Big Break";
+        document.title = "Long Break";
       } else {
         document.title = "Break";
       }
@@ -70,7 +70,7 @@ const MainContainer = () => {
           : state.cycleCount !== 0 &&
             state.cyclesBeforeBigBreak !== 0 &&
             state.cycleCount % state.cyclesBeforeBigBreak === 0
-          ? "Big Break"
+          ? "Long Break"
           : "Break"}
       </h2>
       <div className="timer-container">

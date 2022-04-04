@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import ReactTooltip from "react-tooltip";
 import NumberInput from "../../components/NumberInput/NumberInput";
 import TimerInput from "../../components/TimerInput/TimerInput";
 import { StateContext } from "../../ContextProvider";
@@ -20,8 +21,8 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
         breakTime: breakTotal,
         cyclesBeforeBigBreak: counter,
         showCycles: showCycles,
-        showTimeSpent: showTimeSpent
-      }
+        showTimeSpent: showTimeSpent,
+      },
     });
     setOpenSettings(false);
   };
@@ -31,7 +32,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
       <div className="inputs-container">
         <div className="timer-forms-container">
           <label className="cluster" htmlFor="task-time">
-            <span className="label-text">Task Time</span>
+            <span className="label-text">Task length</span>
             <TimerInput
               id="task-time"
               setTotal={setTaskTotal}
@@ -39,7 +40,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
             />
           </label>
           <label className="cluster" htmlFor="break-time">
-            <span className="label-text">Break Time</span>
+            <span className="label-text">Break length</span>
 
             <TimerInput
               id="break-time"
@@ -50,7 +51,22 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
         </div>
         <div className="other-inputs-container">
           <label className="cluster" htmlFor="big-break">
-            <span className="label-text">Take a Big Break Every x Cycles</span>
+            <span
+              className="label-text"
+              data-tip="A long break is a break as long as a task. Set to 0 to not take any long breaks."
+              data-for="big-break-helper"
+            >
+              Take a long break every x cycles
+            </span>
+            <ReactTooltip
+              id="big-break-helper"
+              place="top"
+              effect="solid"
+              border
+              textColor="#008f11"
+              backgroundColor="#2c071b"
+              borderColor="#003b00"
+            />
             <NumberInput
               id="big-break"
               counter={counter}
@@ -58,7 +74,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
             />
           </label>
           <label className="cluster checkbox" htmlFor="cycle-checkbox">
-            <span className="label-text">Show Cycle Counter</span>
+            <span className="label-text">Show cycle counter</span>
             <input
               type="checkbox"
               className="checkbox-input"
@@ -69,7 +85,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
             <div className="checkbox-box" />
           </label>
           <label className="cluster checkbox" htmlFor="time-spent-checkbox">
-            <span className="label-text">Show Time Spent</span>
+            <span className="label-text">Show total time spent</span>
             <input
               type="checkbox"
               className="checkbox-input"
@@ -91,7 +107,7 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
             handleSet();
           }}
         >
-          SET
+          Set
         </button>
       </div>
     </div>
