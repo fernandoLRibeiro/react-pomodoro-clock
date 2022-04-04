@@ -11,7 +11,7 @@ This project is a simple Pomodoro Clock web app.
 ### Links
 
 - Codesandbox: [https://codesandbox.io/s/silly-bartik-cpx95x](https://codesandbox.io/s/silly-bartik-cpx95x)
-- Live Site URL: Coming soon
+- Live Site URL: [https://relaxed-gnome-f51521.netlify.app/](https://relaxed-gnome-f51521.netlify.app/)
 
 ### Built with
 
