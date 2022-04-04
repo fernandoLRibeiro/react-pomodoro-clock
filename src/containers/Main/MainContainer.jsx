@@ -32,6 +32,7 @@ const MainContainer = () => {
       setTimeLeft(time);
     } else {
       setTime(state.breakTime * 1000);
+      setTimeLeft(time);
     }
   };
 
