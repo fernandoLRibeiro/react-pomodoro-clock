@@ -6,7 +6,10 @@ export const initialState = {
   cyclesBeforeBigBreak: 4,
   playTask: true,
   showTimeSpent: false,
+  showDetailed: false,
   timeSpent: 0,
+  spentOnTask: 0,
+  spentOnBreak: 0,
 };
 
 export const reducer = (state, action) => {
@@ -19,6 +22,7 @@ export const reducer = (state, action) => {
         cyclesBeforeBigBreak: action.item.cyclesBeforeBigBreak,
         showCycles: action.item.showCycles,
         showTimeSpent: action.item.showTimeSpent,
+        showDetailed: action.item.showDetailed,
         playTask: true,
       };
 
@@ -28,6 +32,7 @@ export const reducer = (state, action) => {
           ...state,
           playTask: false,
           timeSpent: state.timeSpent + action.time,
+          spentOnTask: state.spentOnTask + action.time,
         };
       } else {
         return {
@@ -35,6 +40,7 @@ export const reducer = (state, action) => {
           playTask: true,
           cycleCount: state.cycleCount + 1,
           timeSpent: state.timeSpent + action.time,
+          spentOnBreak: state.spentOnBreak + action.time,
         };
       }
 

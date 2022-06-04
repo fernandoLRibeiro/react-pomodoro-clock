@@ -31,6 +31,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
+  gap: 1em;
 }
 
 .time-spent-container {
@@ -41,6 +42,22 @@
 
 h2 {
   margin: 0;
+}
+
+table {
+  margin: 0;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid #003b00;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+td {
+  background-color: hsl(327, 73%, 10%);
 }
 
 @media screen and (max-width: 1024px) {

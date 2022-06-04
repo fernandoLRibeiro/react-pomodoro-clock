@@ -95,25 +95,88 @@ const MainContainer = () => {
           </div>
         )}
 
-        {state.showTimeSpent && (
-          <div className="time-spent-container">
-            <h3>Time spent: </h3>
-            <p>
-              &nbsp;
-              {`
+        {state.showTimeSpent ? (
+          state.showDetailed ? (
+            <div className="detailed-time-spent-container">
+              <table>
+                <tr>
+                  <th>Task</th>
+                  <td>
+                    {`
+                  ${Math.floor(state.spentOnTask / 1000 / 3600)
+                    .toString()
+                    .padStart(2, "0")}:${Math.floor(
+                      ((state.spentOnTask / 1000) % 3600) / 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}:${Math.floor(
+                      (state.spentOnTask / 1000) % 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}
+                `}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Break</th>
+                  <td>
+                    {`
+                  ${Math.floor(state.spentOnBreak / 1000 / 3600)
+                    .toString()
+                    .padStart(2, "0")}:${Math.floor(
+                      ((state.spentOnBreak / 1000) % 3600) / 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}:${Math.floor(
+                      (state.spentOnBreak / 1000) % 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}
+                `}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th>Total</th>
+                  <td>
+                    {`
                   ${Math.floor(state.timeSpent / 1000 / 3600)
                     .toString()
                     .padStart(2, "0")}:${Math.floor(
-                ((state.timeSpent / 1000) % 3600) / 60
-              )
-                .toString()
-                .padStart(2, "0")}:${Math.floor((state.timeSpent / 1000) % 60)
-                .toString()
-                .padStart(2, "0")}
+                      ((state.timeSpent / 1000) % 3600) / 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}:${Math.floor(
+                      (state.timeSpent / 1000) % 60
+                    )
+                      .toString()
+                      .padStart(2, "0")}
                 `}
-            </p>
-          </div>
-        )}
+                  </td>
+                </tr>
+              </table>
+            </div>
+          ) : (
+            <div className="time-spent-container">
+              <h3>Total Time spent: </h3>
+              <p>
+                &nbsp;
+                {`
+                  ${Math.floor(state.timeSpent / 1000 / 3600)
+                    .toString()
+                    .padStart(2, "0")}:${Math.floor(
+                  ((state.timeSpent / 1000) % 3600) / 60
+                )
+                  .toString()
+                  .padStart(2, "0")}:${Math.floor((state.timeSpent / 1000) % 60)
+                  .toString()
+                  .padStart(2, "0")}
+                `}
+              </p>
+            </div>
+          )
+        ) : null}
       </div>
 
       {openRingtone ? (
