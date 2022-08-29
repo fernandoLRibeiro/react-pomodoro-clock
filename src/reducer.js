@@ -1,12 +1,14 @@
+const localStorageSettings = JSON.parse(localStorage.getItem("settings"));
+
 export const initialState = {
-  taskTime: 25 * 60,
-  breakTime: 5 * 60,
+  taskTime: localStorageSettings?.taskTime || 25 * 60,
+  breakTime: localStorageSettings?.breakTime || 5 * 60,
   cycleCount: 0,
-  showCycles: false,
-  cyclesBeforeBigBreak: 4,
+  showCycles: localStorageSettings?.showCycles || false,
+  cyclesBeforeBigBreak: localStorageSettings?.cyclesBeforeBigBreak || 4,
   playTask: true,
-  showTimeSpent: false,
-  showDetailed: false,
+  showTimeSpent: localStorageSettings?.showTimeSpent || false,
+  showDetailed: localStorageSettings?.showDetailed || false,
   timeSpent: 0,
   spentOnTask: 0,
   spentOnBreak: 0,

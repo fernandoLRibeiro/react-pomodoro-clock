@@ -15,17 +15,20 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
   const [showDetailed, setShowDetailed] = useState(state.showDetailed);
 
   const handleSet = () => {
+    const settings = {
+      taskTime: taskTotal,
+      breakTime: breakTotal,
+      cyclesBeforeBigBreak: counter,
+      showCycles: showCycles,
+      showTimeSpent: showTimeSpent,
+      showDetailed: showDetailed,
+    };
     dispatch({
       type: "SET_SETTINGS",
-      item: {
-        taskTime: taskTotal,
-        breakTime: breakTotal,
-        cyclesBeforeBigBreak: counter,
-        showCycles: showCycles,
-        showTimeSpent: showTimeSpent,
-        showDetailed: showDetailed,
-      },
+      item: settings,
     });
+    localStorage.setItem("settings", JSON.stringify(settings));
+    console.log(JSON.parse(localStorage.getItem("settings")));
     setOpenSettings(false);
   };
 
