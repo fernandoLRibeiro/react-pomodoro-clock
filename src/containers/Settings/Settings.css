@@ -46,6 +46,12 @@ h4 {
   display: none;
 }
 
+.buttons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .set-button {
   outline: none;
   border: 1px solid #003b00;

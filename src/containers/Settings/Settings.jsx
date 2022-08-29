@@ -28,7 +28,25 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
       item: settings,
     });
     localStorage.setItem("settings", JSON.stringify(settings));
-    console.log(JSON.parse(localStorage.getItem("settings")));
+
+    setOpenSettings(false);
+  };
+
+  const handleReset = () => {
+    const settings = {
+      taskTime: 25 * 60,
+      breakTime: 5 * 60,
+      cyclesBeforeBigBreak: 4,
+      showCycles: false,
+      showTimeSpent: false,
+      showDetailed: false,
+    };
+
+    dispatch({
+      type: "SET_SETTINGS",
+      item: settings,
+    });
+    localStorage.setItem("settings", JSON.stringify(settings));
     setOpenSettings(false);
   };
 
@@ -143,6 +161,17 @@ const Settings = ({ setIsPlaying, setOpenSettings }) => {
           }}
         >
           Set
+        </button>
+
+        <button
+          className="set-button"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsPlaying(false);
+            handleReset();
+          }}
+        >
+          Reset to default
         </button>
       </div>
     </form>
