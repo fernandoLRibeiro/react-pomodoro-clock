@@ -50,6 +50,8 @@ h4 {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 1em;
+  flex-wrap: wrap;
 }
 
 .set-button {
@@ -112,5 +114,9 @@ h4 {
   .timer-form-container {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
+  }
+
+  .buttons-container {
+    flex-direction: column;
   }
 }
