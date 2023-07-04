@@ -35,12 +35,13 @@ export const reducer = (state, action) => {
           playTask: false,
           timeSpent: state.timeSpent + action.time,
           spentOnTask: state.spentOnTask + action.time,
+          cycleCount: state.cycleCount + 1,
         };
       } else {
         return {
           ...state,
           playTask: true,
-          cycleCount: state.cycleCount + 1,
+
           timeSpent: state.timeSpent + action.time,
           spentOnBreak: state.spentOnBreak + action.time,
         };
